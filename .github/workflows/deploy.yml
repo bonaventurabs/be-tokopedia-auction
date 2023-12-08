@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy to GCP
         run: |
-          gcloud run deploy your-app \
+          gcloud run deploy tokped-app \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/tokped-app:latest \
             --platform managed \
             --region us-central1 \
