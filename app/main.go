@@ -7,9 +7,11 @@ import (
 
 	"github.com/bonaventurabs/be-tokopedia-auction/config"
 	healthDeliveryHTTP "github.com/bonaventurabs/be-tokopedia-auction/delivery/http/health"
+	itemDeliveryHTTP "github.com/bonaventurabs/be-tokopedia-auction/delivery/http/item"
 	userDeliveryHTTP "github.com/bonaventurabs/be-tokopedia-auction/delivery/http/user"
 	"github.com/bonaventurabs/be-tokopedia-auction/repository/postgre"
 	"github.com/bonaventurabs/be-tokopedia-auction/usecase/health"
+	"github.com/bonaventurabs/be-tokopedia-auction/usecase/item"
 	"github.com/bonaventurabs/be-tokopedia-auction/usecase/user"
 )
 
@@ -27,9 +29,11 @@ func main() {
 	// e.Use(middL.CORS)
 	hUc := health.NewUsecase()
 	uUc := user.NewUsecase(repoPostgre)
+	iUc := item.NewUsecase(repoPostgre)
 
 	healthDeliveryHTTP.NewHealthHTTP(e, hUc)
 	userDeliveryHTTP.NewUserHTTP(e, uUc)
+	itemDeliveryHTTP.NewItemHTTP(e, iUc)
 
 	log.Fatal(e.Start(":8080"))
 

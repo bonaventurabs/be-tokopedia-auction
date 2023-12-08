@@ -8,6 +8,8 @@ WORKDIR /app
 
 COPY . .
 
+COPY ./config.ini .
+
 RUN make build
 
 # Distribution
@@ -22,5 +24,6 @@ WORKDIR /app
 EXPOSE 9090
 
 COPY --from=builder /app/engine /app/
+COPY --from=builder /app/config.ini /app/
 
 CMD /app/engine

@@ -12,6 +12,8 @@ services:
       - ./logs:/app/logs
     depends_on:
       - postgres
+    networks:
+      - app-tier
 
   postgres:
     image: postgres:alpine
@@ -20,10 +22,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=12345
       - POSTGRES_DB=tokopedia-auction
-    # volumes:
-    #   - pgdata:/var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - app-tier
 
 volumes:
   pgdata:
