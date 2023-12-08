@@ -1,0 +1,99 @@
+{
+  "code": 200,
+  "status": "OK",
+  "message": "Success",
+  "data": {
+    "page": 1,
+    "per_page": 10,
+    "page_count": 20,
+    "total_count": 31,
+    "records": [
+      {
+        "id": 1,
+        "created_at": "2021-08-05T12:00:00Z",
+        "updated_at": "",
+        "name": "Lukisan Pangeran Diponegoro",
+        "description": "Lukisan Pangeran Diponegoro yang terkenal karya Hakim",
+        "image": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+        ],
+        "is_auction": true,
+        "is_active": true,
+        "start_auct": "2023-12-7T12:00:00Z",
+        "end_auct": "2023-12-15T12:00:00Z",
+        "start_price": 100000000,
+        "seller": {
+          "id": 1,
+          "name": "Abdul Hakim",
+          "email": "abdul.hakim@gmail.com",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+        },
+        "bid": {
+          "total_bid": 5,
+          "highest_bid": 100000000,
+          "history_bid": [
+            {
+              "id": 1,
+              "created_at": "2021-08-05T12:00:00Z",
+              "updated_at": "",
+              "user_id": 1,
+              "item_id": 1,
+              "bid_price": 100000000
+            },
+            {
+              "id": 2,
+              "created_at": "2021-08-05T12:00:00Z",
+              "updated_at": "",
+              "user_id": 2,
+              "item_id": 1,
+              "bid_price": 200000000
+            }
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "created_at": "2021-08-05T12:00:00Z",
+        "updated_at": "",
+        "name": "Buku Antik Kuno dari Jepang",
+        "description": "Buku Antik Kuno dari Jepang",
+        "image": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+        ],
+        "is_auction": true,
+        "is_active": true,
+        "start_auct": "2023-12-7T12:00:00Z",
+        "end_auct": "2023-12-15T12:00:00Z",
+        "start_price": 100000000,
+        "seller": {
+          "id": 1,
+          "name": "Abdul Hakim",
+          "email": "abdul.hakim@gmail.com",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+        },
+        "bid": {
+          "total_bid": 5,
+          "highest_bid": 100000000,
+          "history_bid": [
+            {
+              "id": 1,
+              "created_at": "2021-08-05T12:00:00Z",
+              "updated_at": "",
+              "user_id": 1,
+              "item_id": 1,
+              "bid_price": 100000000
+            },
+            {
+              "id": 2,
+              "created_at": "2021-08-05T12:00:00Z",
+              "updated_at": "",
+              "user_id": 2,
+              "item_id": 1,
+              "bid_price": 200000000
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "code": 200,
+  "status": "OK",
+  "message": "Success",
+  "data": {
+    "id": 1,
+    "created_at": "2021-08-05T12:00:00Z",
+    "updated_at": "",
+    "name": "Lukisan Pangeran Diponegoro",
+    "description": "Lukisan Pangeran Diponegoro yang terkenal karya Hakim",
+    "image": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+    ],
+    "is_auction": true,
+    "is_active": true,
+    "start_auct": "2023-12-7T12:00:00Z",
+    "end_auct": "2023-12-15T12:00:00Z",
+    "start_price": 100000000,
+    "seller": {
+      "id": 1,
+      "name": "Abdul Hakim",
+      "email": "abdul.hakim@gmail.com",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Portrait_of_Diponegoro.jpg/220px-Portrait_of_Diponegoro.jpg"
+    },
+    "bid": {
+      "total_bid": 2,
+      "highest_bid": 200000000,
+      "history_bid": [
+        {
+          "id": 1,
+          "created_at": "2021-08-05T12:00:00Z",
+          "updated_at": "",
+          "user_id": 1,
+          "item_id": 1,
+          "bid_price": 100000000
+        },
+        {
+          "id": 2,
+          "created_at": "2021-08-05T12:00:00Z",
+          "updated_at": "",
+          "user_id": 2,
+          "item_id": 1,
+          "bid_price": 200000000
+        }
+      ]
+    }
+  }
+}
