@@ -20,11 +20,19 @@ jobs:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
+      - name: Check Docker Version
+        run: docker --version
+
+      - name: Check gcloud Version
+        run: gcloud version
+
       - name: Configure Docker and Authenticate with GCR
         run: |
           echo ${{ secrets.GCP_SA_KEY }} | base64 --decode > ${HOME}/gcp-key.json
           gcloud auth activate-service-account 998596668254-compute@developer.gserviceaccount.com --key-file=${HOME}/gcp-key.json --project=${{ secrets.GCP_PROJECT_ID }}
           gcloud auth configure-docker
+        env:
+          PATH: ${{ github.workspace }}/google-cloud-sdk/bin:$PATH
 
       - name: Build and Push Docker Images
         run: |
