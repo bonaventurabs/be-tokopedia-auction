@@ -13,4 +13,6 @@ func NewItemHTTP(e *echo.Group, usecase Usecases) {
 		usecase: usecase,
 	}
 	e.GET("/items", handler.GetAllItems)
+	e.GET("/items/:id", handler.GetItemById)
+	e.POST("/items", handler.PostItem)
 }

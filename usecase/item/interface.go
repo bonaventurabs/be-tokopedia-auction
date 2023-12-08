@@ -11,4 +11,7 @@ type Item interface {
 	GetImagesByItemId(ctx context.Context, id int64) ([]model.ItemImage, error)
 	GetSellerById(ctx context.Context, id int64) (model.Seller, error)
 	GetBidByItemId(ctx context.Context, id int64) ([]model.Bid, error)
+	GetItemById(ctx context.Context, id int64) (model.Item, error)
+	PostItem(ctx context.Context, item model.Item) error
+	PostItemImages(ctx context.Context, items []model.ItemImage) error
 }

@@ -14,3 +14,9 @@ type BidDetail struct {
 	HighestBid int64 `json:"highest_bid"`
 	HistoryBid []Bid `json:"history_bid"`
 }
+
+type BidPost struct {
+	BidPrice int64 `form:"bid_price"`
+	ItemId   int64 `form:"item_id"`
+	UserId   int64 `form:"user_id"`
+}

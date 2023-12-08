@@ -36,3 +36,12 @@ type ItemDetailPagination struct {
 	TotalCount int64        `json:"total_count"`
 	Records    []ItemDetail `json:"records"`
 }
+
+type ItemPost struct {
+	Name         string `form:"name"`
+	Description  string `form:"description"`
+	StartAuction string `form:"start_auct"`
+	EndAuction   string `form:"end_auct"`
+	StartPrice   int64  `form:"start_price"`
+	SellerId     int64  `form:"seller_id"`
+}

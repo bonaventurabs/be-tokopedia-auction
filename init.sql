@@ -68,17 +68,17 @@ CREATE TABLE IF NOT EXISTS item_bid (
 -- Path: init.sql
 
 INSERT INTO users (username, password, name, email, image) VALUES 
-('akimpi', '12345', 'Abdul Hakim', 'abdul.hakim@gmail.com', 'https://www.google.com');
+('akimpi', '12345', 'Abdul Hakim', 'abdul.hakim@gmail.com', 'https://ucarecdn.com/0109f00c-d7f6-4a9f-8e3f-943605298025/-/preview/500x500/-/quality/smart/-/format/auto/');
 
 INSERT INTO seller (username, password, name, email, image) VALUES 
-('barang_antiq', '12345', 'Barang Antik', 'barang.antik@gmail.com', 'https://www.google.com');
+('barang_antiq', '12345', 'Barang Antik', 'barang.antik@gmail.com', 'https://ucarecdn.com/c11d3018-8f6e-4d7b-96aa-389253e90c17/-/preview/500x500/-/quality/smart/-/format/auto/');
 
 INSERT INTO item (name, description, is_auction, is_active, start_auct, end_auct, start_price, seller_id) VALUES 
 ('Jam Tangan', 'Jam tangan antik', true, true, '2023-12-07 22:00:00', '2023-12-14 22:00:00', 1000000, 1);
 
 INSERT INTO item_image (image, item_id) VALUES 
-('https://www.google.com', 1),
-('https://www.google.com', 1);
+('https://ucarecdn.com/86dc6ac8-c39f-4218-83e8-fce0cdf809af/jamtangan.jpeg', 1),
+('https://ucarecdn.com/afe47101-9ac5-44f4-8888-74a6ea289c9c/jamtangan2.jpg', 1);
 
 INSERT INTO item_bid (bid_price, item_id, user_id) VALUES 
 (1000000, 1, 1),
