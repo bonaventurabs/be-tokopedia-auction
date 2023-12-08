@@ -2,6 +2,7 @@ version: "3.7"
 services:
   app:
     container_name: app
+    image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/tokped-app:latest
     build:
       context: .
       dockerfile: Dockerfile
