@@ -13,7 +13,7 @@
   - [Database Migration](#database-migration)
   - [Access Server](#access-server)
 - [API Documentation](#api-documentation)
-- [Team Member](#contributing)
+- [Team Member](#team-member)
 
 ## Prerequisites
 
