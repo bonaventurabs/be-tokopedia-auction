@@ -8,7 +8,7 @@ type UserHttpHandler struct {
 	usecase Usecases
 }
 
-func NewUserHTTP(e *echo.Echo, usecase Usecases) {
+func NewUserHTTP(e *echo.Group, usecase Usecases) {
 	handler := &UserHttpHandler{
 		usecase: usecase,
 	}

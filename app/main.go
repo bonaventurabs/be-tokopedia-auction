@@ -31,9 +31,10 @@ func main() {
 	uUc := user.NewUsecase(repoPostgre)
 	iUc := item.NewUsecase(repoPostgre)
 
-	healthDeliveryHTTP.NewHealthHTTP(e, hUc)
-	userDeliveryHTTP.NewUserHTTP(e, uUc)
-	itemDeliveryHTTP.NewItemHTTP(e, iUc)
+	eG := e.Group("/api/v1")
+	healthDeliveryHTTP.NewHealthHTTP(eG, hUc)
+	userDeliveryHTTP.NewUserHTTP(eG, uUc)
+	itemDeliveryHTTP.NewItemHTTP(eG, iUc)
 
 	log.Fatal(e.Start(":8080"))
 

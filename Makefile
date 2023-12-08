@@ -1,7 +1,7 @@
 # Database
 PSQL_USER ?= user
 PSQL_PASSWORD ?= 12345
-PSQL_ADDRESS ?= 127.0.0.1:5432
+PSQL_ADDRESS ?= postgres:5432
 PSQL_DATABASE ?= tokopedia-auction
 
 # Exporting bin folder to the path for makefile
