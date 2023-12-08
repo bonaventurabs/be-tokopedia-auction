@@ -23,7 +23,7 @@ jobs:
       - name: Configure Docker and Authenticate with GCR
         run: |
           echo ${{ secrets.GCP_SA_KEY }} | base64 --decode > ${HOME}/gcp-key.json
-          gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
+          gcloud auth activate-service-account 998596668254-compute@developer.gserviceaccount.com --key-file=${HOME}/gcp-key.json --project=${{ secrets.GCP_PROJECT_ID }}
           gcloud auth configure-docker
 
       - name: Build and Push Docker Images
