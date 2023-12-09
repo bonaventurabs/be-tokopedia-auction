@@ -83,3 +83,18 @@ INSERT INTO item_image (image, item_id) VALUES
 INSERT INTO item_bid (bid_price, item_id, user_id) VALUES 
 (1000000, 1, 1),
 (2000000, 1, 1);
+
+INSERT INTO item (name, description, is_auction, is_active, start_auct, end_auct, start_price, seller_id) VALUES 
+('Lukisan Raden Saleh', 'Lukisan raden saleh yang pernah dicuri', true, true, '2023-12-07 22:31:00', '2023-12-14 22:31:00', 3000000, 1),
+('Sofa Kayu', 'Sofa kuno dari pohon jati', true, true, '2023-12-08 22:31:00', '2023-12-16 22:31:00', 1000000, 1),
+('Sepeda Kebo', 'Sepeda unik dari jaman Belanda', true, true, '2023-12-07 22:31:00', '2023-12-14 22:31:00', 4000000, 1);
+
+INSERT INTO item_image (image, item_id) VALUES 
+('https://ucarecdn.com/2946ad43-ed1c-41ec-b60a-4f6d5f14f82d/lukisanradensaleh.jpg', 2),
+('https://ucarecdn.com/c68fd25b-7be4-448d-834e-3c8053de5d9e/sofakayu.jpg', 3),
+('https://ucarecdn.com/a6b030a3-bcd5-4c60-bfd1-27e14d891d3f/sepedakebo.jpg', 4);
+
+INSERT INTO item_bid (bid_price, item_id, user_id) VALUES 
+(3000000, 2, 1),
+(1000000, 3, 1),
+(4000000, 4, 1);
