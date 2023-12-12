@@ -56,7 +56,7 @@ jobs:
 
       - name: Set credential to kubectl and docker
         run: |
-          gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
+          gcloud auth configure-kubectl
           gcloud auth configure-docker
 
       # Push the Docker image to Google Artifact Registry
