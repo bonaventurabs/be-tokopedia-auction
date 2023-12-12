@@ -66,16 +66,13 @@ jobs:
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
 
       # Deploy the Docker image to the GKE cluster
+      # Note: Images should set to public
+      # TODO: Set credential to kubectl, so image can be pull in private
       - name: Configure kubectl
         run: |
           gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
           kubectl get namespaces
           kubectl config current-context
-          kubectl create secret docker-registry regcred \
-            --docker-server=<your-registry-server> \
-            --docker-username=<your-name> \
-            --docker-password=<your-pword> 
-            --docker-email=<your-email>
 
       - name: Deploy to GKE
         run: |
