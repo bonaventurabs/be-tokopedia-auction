@@ -54,10 +54,6 @@ jobs:
           gcloud components install gke-gcloud-auth-plugin
           gcloud components update
 
-      - name: Set credential to kubectl and docker
-        run: |
-          gcloud auth configure-docker
-
       # Push the Docker image to Google Artifact Registry
       - name: Build and push PostgreSQL image
         run: |
@@ -75,6 +71,11 @@ jobs:
           gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
           kubectl get namespaces
           kubectl config current-context
+          kubectl create secret docker-registry regcred \
+            --docker-server=<your-registry-server> \
+            --docker-username=<your-name> \
+            --docker-password=<your-pword> 
+            --docker-email=<your-email>
 
       - name: Deploy to GKE
         run: |
