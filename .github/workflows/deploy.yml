@@ -73,4 +73,4 @@ jobs:
       - name: Deploy to GKE
         run: |
           kubectl apply -f kubernetes-deployment.yaml
-          kubectl get services
+          kubectl get services -o wide
