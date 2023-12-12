@@ -26,11 +26,11 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              value: postgres
+              value: "postgres"
             - name: POSTGRES_PASSWORD
-              value: 12345
+              value: "12345"
             - name: POSTGRES_DB
-              value: tokopedia-auction
+              value: "tokopedia-auction"
           volumeMounts:
             - name: pgdata-volume
               mountPath: /var/lib/postgresql/data
