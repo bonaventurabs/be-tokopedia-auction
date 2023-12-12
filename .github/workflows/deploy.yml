@@ -39,7 +39,7 @@ jobs:
       # Push the Docker image to Google Artifact Registry
       - name: Build and push PostgreSQL image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest -f /Dockerfile.postgres .
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest -f Dockerfile.postgres .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest
 
       - name: Build and push application image
