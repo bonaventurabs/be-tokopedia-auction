@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: gcr.io/tokopedia-auction/be-tokopedia-auction:latest  # Update with your GCR details
+          image: gcr.io/tokopedia-auction/be-tokopedia-auction:latest  # Update with your GCR detail
           ports:
             - containerPort: 8080
           volumeMounts:
