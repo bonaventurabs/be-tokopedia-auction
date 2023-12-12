@@ -16,7 +16,7 @@ spec:
         - name: app
           image: gcr.io/tokopedia-auction/be-tokopedia-auction:latest  # Update with your GCR details
           ports:
-            - containerPort: 9090
+            - containerPort: 8080
           volumeMounts:
             - name: logs-volume
               mountPath: /app/logs
@@ -50,7 +50,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 9090
+      targetPort: 8080
   type: LoadBalancer
 ---
 apiVersion: v1
