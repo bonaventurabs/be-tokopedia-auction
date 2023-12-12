@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 2  # Adjust as needed
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/tokopedia-auction/tokopedia-auction:latest  # Update with your GCR details
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: logs-volume
+              mountPath: /app/logs
+        - name: postgres
+          image: gcr.io/tokopedia-auction/postgres:latest  # Update with your GCR details
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: 12345
+            - name: POSTGRES_DB
+              value: tokopedia-auction
+          volumeMounts:
+            - name: pgdata-volume
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: logs-volume
+          emptyDir: {}
+        - name: pgdata-volume
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  selector:
+    app: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9090
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP

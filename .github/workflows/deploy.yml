@@ -5,50 +5,51 @@ on:
     branches:
       - main
 
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GAR_LOCATION: asia-southeast1 # TODO: update region of the Artifact Registry
+  GKE_CLUSTER: tokopedia-auction-cluster # TODO: update to cluster name
+  GKE_ZONE: asia-southeast1-b # TODO: update to cluster zone
+  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
+  REPOSITORY: tokopedia-auction # TODO: update to Artifact Registry docker repository
+  IMAGE: static-site
+
 jobs:
-  deploy:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
+    # environment: production
+
+    permissions:
+      contents: "read"
+      id-token: "write"
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      # Configure Workload Identity Federation and generate an access token.
       - name: Set up Google Cloud SDK
-        uses: "google-github-actions/setup-gcloud@v1"
+        uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          version: "latest"
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-
-      - name: Check Docker Version
-        run: docker --version
-
-      - name: Check gcloud Version
-        run: gcloud version
-
-      - name: Install Google Cloud SDK
+          export_default_credentials: true
+            .
+      # Push the Docker image to Google Artifact Registry
+      - name: Build and push PostgreSQL image
         run: |
-          wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
-          tar -xzf google-cloud-sdk.tar.gz
-          ./google-cloud-sdk/install.sh
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest -f path/to/Dockerfile.postgres .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest
 
-      - name: Configure Docker and Authenticate with GCR
+      - name: Build and push application image
         run: |
-          echo ${{ secrets.GCP_SA_KEY }} | base64 --decode > ${HOME}/gcp-key.json
-          gcloud auth activate-service-account 998596668254-compute@developer.gserviceaccount.com --key-file=${HOME}/gcp-key.json --project=${{ secrets.GCP_PROJECT_ID }}
-          gcloud auth configure-docker
-        env:
-          PATH: ${{ github.workspace }}/google-cloud-sdk/bin:$PATH
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.repository }}:latest .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.repository }}:latest
 
-      - name: Build and Push Docker Images
-        run: |
-          docker-compose build
-          docker-compose push
+      # Deploy the Docker image to the GKE cluster
+      - name: Configure kubectl
+        run: gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }}
 
-      - name: Deploy to GCP
-        run: |
-          gcloud run deploy tokped-app \
-            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/tokped-app:latest \
-            --platform managed \
-            --region us-central1 \
-            --allow-unauthenticated
+      - name: Deploy to GKE
+        run: kubectl apply -f path/to/kubernetes-deployment.yaml
