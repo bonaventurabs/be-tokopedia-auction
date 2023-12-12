@@ -12,7 +12,7 @@ env:
   GKE_ZONE: asia-southeast1-b # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   REPOSITORY: tokopedia-auction # TODO: update to Artifact Registry docker repository
-  IMAGE: static-site
+  IMAGE: be-tokopedia-auction
 
 jobs:
   setup-build-publish-deploy:
@@ -63,8 +63,8 @@ jobs:
 
       - name: Build and push application image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.repository }}:latest .
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ github.repository }}:latest
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
 
       # Deploy the Docker image to the GKE cluster
       - name: Configure kubectl
