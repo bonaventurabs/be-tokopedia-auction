@@ -48,6 +48,11 @@ jobs:
           location: ${{ env.GKE_ZONE }}
           credentials: ${{ secrets.GKE_SA_KEY }}
 
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          gcloud components install gke-gcloud-auth-plugin
+          gcloud components update
+
       # Push the Docker image to Google Artifact Registry
       - name: Build and push PostgreSQL image
         run: |
