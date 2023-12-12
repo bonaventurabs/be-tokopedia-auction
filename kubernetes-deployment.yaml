@@ -6,21 +6,21 @@ spec:
   replicas: 2  # Adjust as needed
   selector:
     matchLabels:
-      app: app
+      app: app-container
   template:
     metadata:
       labels:
-        app: app
+        app: app-container
     spec:
       containers:
-        - name: app
+        - name: app-container
           image: gcr.io/tokopedia-auction/be-tokopedia-auction:latest  # Update with your GCR detail
           ports:
             - containerPort: 8080
           volumeMounts:
             - name: logs-volume
               mountPath: /app/logs
-        - name: postgres
+        - name: postgres-container
           image: gcr.io/tokopedia-auction/postgres:latest  # Update with your GCR details
           ports:
             - containerPort: 5432
@@ -43,10 +43,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
+  name: app
 spec:
   selector:
-    app: app
+    app: app-container
   ports:
     - protocol: TCP
       port: 80
@@ -56,10 +56,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: postgres
 spec:
   selector:
-    app: postgres
+    app: postgres-container
   ports:
     - protocol: TCP
       port: 5432
