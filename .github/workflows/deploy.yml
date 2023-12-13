@@ -49,7 +49,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          gcloud components install kubectl
           gcloud components install gke-gcloud-auth-plugin
           gcloud components update
 
