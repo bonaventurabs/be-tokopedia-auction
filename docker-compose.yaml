@@ -21,7 +21,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=12345
-      - POSTGRES_DB=tokopedia-auction
+      - POSTGRES_DB=tokopedia-auction-db
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:

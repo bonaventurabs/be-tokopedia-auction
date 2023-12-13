@@ -46,7 +46,6 @@ jobs:
         with:
           cluster_name: ${{ env.GKE_CLUSTER }}
           location: ${{ env.GKE_ZONE }}
-          credentials: ${{ secrets.GKE_SA_KEY }}
 
       - name: Install dependencies
         run: |
@@ -55,11 +54,6 @@ jobs:
           gcloud components update
 
       # Push the Docker image to Google Artifact Registry
-      - name: Build and push PostgreSQL image
-        run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest -f Dockerfile.postgres .
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/postgres:latest
-
       - name: Build and push application image
         run: |
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest .
@@ -76,5 +70,9 @@ jobs:
 
       - name: Deploy to GKE
         run: |
+          kubectl apply -f postgres-config.yaml 
+          kubectl apply -f postgres-pvc-pv.yaml 
+          kubectl apply -f postgres-deployment.yaml 
+          kubectl apply -f postgres-service.yaml 
           kubectl apply -f kubernetes-deployment.yaml
           kubectl get services -o wide

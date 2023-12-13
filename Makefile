@@ -2,7 +2,7 @@
 PSQL_USER ?= user
 PSQL_PASSWORD ?= 12345
 PSQL_ADDRESS ?= postgres:5432
-PSQL_DATABASE ?= tokopedia-auction
+PSQL_DATABASE ?= tokopedia-auction-db
 
 # Exporting bin folder to the path for makefile
 export PATH   := $(PWD)/bin:$(PATH)
